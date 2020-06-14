@@ -1,0 +1,42 @@
+.Wrapper {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#image {
+  z-index: -1;
+  position: absolute;
+  height: 90vh;
+  width: 100%;
+}
+
+.row-1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  padding: 40px;
+  margin-top: 350px;
+  width: 900px;
+  margin-left: 160px;
+  /* background-blend-mode: darken; */
+}
+
+#date {
+  width: 200px;
+  height: 30px;
+  padding-left: 10px;
+  color: black;
+  cursor: pointer;
+}
+
+#schedule-button {
+  cursor: pointer;
+  padding: 10px;
+  margin-left: 20px;
+  border: 0;
+  height: 35px;
+  background-color: black;
+  color: white;
+}

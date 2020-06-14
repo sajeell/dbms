@@ -1,0 +1,7 @@
+#header-button {
+  cursor: pointer;
+}
+
+#header-button:hover {
+  color: red;
+}
