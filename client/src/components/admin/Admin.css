@@ -1,3 +1,91 @@
+.Admin-login-wrapper {
+  display: flex;
+}
+#admin-login-image {
+  height: 100vh;
+  width: 100%;
+  z-index: -1;
+  position: absolute;
+}
+
+.admin-login-form {
+  background-color: white;
+  margin-left: 450px;
+  margin-top: 120px;
+  width: 450px;
+  padding: 5px;
+  padding-top: 80px;
+  padding-bottom: 80px;
+  display: flex;
+  justify-content: center;
+  -webkit-box-shadow: -1px 4px 14px -2px rgba(255, 0, 0, 1);
+  -moz-box-shadow: -1px 4px 14px -2px rgba(255, 0, 0, 1);
+  box-shadow: -1px 4px 14px -2px rgba(255, 0, 0, 1);
+}
+
+#admin-login-email {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  width: 250px;
+  font: 200px;
+  height: 25px;
+  border: 1px solid black;
+  text-align: center;
+}
+
+#admin-login-password {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  width: 250px;
+  margin-top: 10px;
+  font: 200px;
+  border: 1px solid black;
+  height: 25px;
+  text-align: center;
+}
+
+#admin-login-button {
+  padding: 10px;
+  font-size: 15px;
+  text-transform: uppercase;
+  border: 0;
+  width: 140px;
+  margin-top: 20px;
+  margin-left: 63px;
+  cursor: pointer;
+}
+
+#admin-login-button:hover {
+  background-color: black;
+  color: white;
+}
+
+.admin-login-row-3 {
+  margin-top: 10px;
+  margin-left: 5px;
+  font-size: 12px;
+}
+
+.admin-login-row-3 span {
+  cursor: pointer;
+  font-weight: bolder;
+}
+
+.admin-login-row-3 span:hover {
+  font-size: 12.5px;
+  color: rgba(140, 0, 0, 1);
+}
+
+.admin-login-row-0 {
+  text-align: center;
+}
+
+.admin-login-row-0 p {
+  margin: 14px;
+  font-weight: bold;
+  font-size: 25px;
+}
+
 .Register-wrapper {
   display: flex;
 }

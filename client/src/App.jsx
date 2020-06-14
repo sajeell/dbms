@@ -1,10 +1,13 @@
 import React, { useState, useCallback } from "react";
+import { Route } from "react-router-dom";
+
+// Import CSS File
 import "./App.css";
 
 // React Components
-// import Login from "./components/login/Login";
-// import Register from "./components/register/Register";
-// import Main from "./components/main/Main";
+import Login from "./components/login/Login";
+import Register from "./components/register/Register";
+import Main from "./components/main/Main";
 import Header from "./components/header/Header";
 import Schedule from "./components/schedule/Schedule";
 
@@ -32,15 +35,23 @@ function App() {
   return (
     <div className='App'>
       <header className='App-header'>
-        <Header />
-        {/* <Login />
-        <Main
-          getSource={fetchSource}
-          getDestination={fetchDestination}
-          getDate={fetchDate}
-        />
-        <Register /> */}
-        <Schedule />
+        <Route exact path='/login'>
+          <Login />
+        </Route>
+        <Route exact path='/'>
+          <Header />
+          <Main
+            getSource={fetchSource}
+            getDestination={fetchDestination}
+            getDate={fetchDate}
+          />
+        </Route>
+        <Route exact path='/register'>
+          <Register />
+        </Route>
+        <Route exact path='/schedule'>
+          <Schedule />
+        </Route>
       </header>
     </div>
   );

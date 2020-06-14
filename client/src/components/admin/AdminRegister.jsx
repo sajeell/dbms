@@ -1,10 +1,10 @@
 import React from "react";
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom";
 
 // CSS File
-import "./Register.css";
+import "./Admin.css";
 
-export default function Register() {
+export default function AdminRegister() {
   return (
     <div className='Register-wrapper'>
       <div className='image'>
@@ -32,7 +32,7 @@ export default function Register() {
             <p>
               Already a registered member? Click{" "}
               <span id='click'>
-                <Link to='/login'>here</Link>
+                <Link to='/admin/login'>here</Link>
               </span>{" "}
               to login
             </p>

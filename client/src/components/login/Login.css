@@ -1,8 +1,8 @@
-.Wrapper {
+.Login-wrapper {
   display: flex;
 }
-#image {
-  height: 99.6vh;
+#login-image {
+  height: 100vh;
   width: 100%;
   z-index: -1;
   position: absolute;
@@ -23,7 +23,7 @@
   box-shadow: -1px 4px 14px -2px rgba(255, 0, 0, 1);
 }
 
-#email {
+#login-email {
   padding-top: 5px;
   padding-bottom: 5px;
   width: 250px;
@@ -33,7 +33,7 @@
   text-align: center;
 }
 
-#password {
+#login-password {
   padding-top: 5px;
   padding-bottom: 5px;
   width: 250px;
@@ -60,27 +60,27 @@
   color: white;
 }
 
-.row-3 {
+.login-row-3 {
   margin-top: 10px;
   margin-left: 5px;
   font-size: 12px;
 }
 
-.row-3 span {
+.login-row-3 span {
   cursor: pointer;
   font-weight: bolder;
 }
 
-.row-3 span:hover {
+.login-row-3 span:hover {
   font-size: 12.5px;
   color: rgba(140, 0, 0, 1);
 }
 
-.row-0 {
+.login-row-0 {
   text-align: center;
 }
 
-.row-0 p {
+.login-row-0 p {
   margin: 14px;
   font-weight: bold;
   font-size: 25px;
