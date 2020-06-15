@@ -6,6 +6,7 @@ import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter, Route } from "react-router-dom";
 import AdminLogin from "./components/admin/AdminLogin";
 import AdminRegister from "./components/admin/AdminRegister";
+import AdminDashboard from "./components/admin/AdminDashboard";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -15,6 +16,9 @@ ReactDOM.render(
       </Route>
       <Route exact path='/admin/register'>
         <AdminRegister />
+      </Route>
+      <Route exact path='/admin/dashboard'>
+        <AdminDashboard />
       </Route>
       <Route>
         <App />
