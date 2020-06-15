@@ -11,11 +11,7 @@ module.exports = (sequelize, DataTypes) => {
     {}
   );
   Station.associate = function (models) {
-    Station.belongsTo(models.Route, {
-      foreignKey: {
-        allowNull: false,
-      },
-    });
+    Station.belongsTo(models.Route);
   };
   return Station;
 };

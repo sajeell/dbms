@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
   Route.associate = function (models) {
     Route.hasMany(models.Buses);
     Route.hasOne(models.Station);
-    Route.belongsTo(models.Ticket);
+    Route.belongsTo(models.ticket);
   };
   return Route;
 };

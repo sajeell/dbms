@@ -12,13 +12,14 @@ app.use(bodyParser.urlencoded({extended: true}));
 //Importing Route Files
 const userCredential = require('./routes/userCredential');
 const adminCredential = require('./routes/adminCredential');
+const routes = require('./routes/routes');
 
 // Routes
 app.use('/user/authentication', require('./routes/userjwtAuth'));
 app.use('/admin/authentication', require('./routes/adminjwtAuth'));
 app.use('/user/credential', userCredential);
 app.use('/admin/credential', adminCredential);
-
+app.use('/routes', routes);
 const PORT = 5000 || process.env.PORT;
 
 app.listen(PORT, () => {
