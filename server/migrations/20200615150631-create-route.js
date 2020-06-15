@@ -1,29 +1,27 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('tickets', {
+    return queryInterface.createTable('Routes', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      customer_id: {
+      bus_id: {
         type: Sequelize.INTEGER,
-        allowNull: false,
+        references: {model: 'Buses', key: 'id'},
       },
-      route_id: {
+      source_id: {
         type: Sequelize.INTEGER,
-        allowNull: false,
+        references: {model: 'Stations', key: 'id'},
       },
-      quantity: {
+      destination_id: {
         type: Sequelize.INTEGER,
-        allowNull: false,
-        default: 1,
+        references: {model: 'Stations', key: 'id'},
       },
-      seatnum: {
+      seat_price: {
         type: Sequelize.INTEGER,
-        allowNull: false,
       },
       createdAt: {
         allowNull: false,
@@ -36,6 +34,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('tickets');
+    return queryInterface.dropTable('Routes');
   },
 };

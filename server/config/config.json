@@ -1,18 +1,10 @@
 {
   "development": {
-    "username": "qfyonlnrmimamk",
-    "password": "08799de7644d9405114c54f1f49a7a180d127a8bdb06a0ec54ab7c3653a80548",
-    "database": "d46rjmeuag8749",
-    "host": "ec2-54-75-246-118.eu-west-1.compute.amazonaws.com",
-    "dialect": "postgres",
-    "dialectOptions": {
-      "ssl": {
-        "require": true,
-        "rejectUnauthorized": false
-      },
-      "keepAlive": true
-    },
-    "ssl": true
+    "username": "sajeel",
+    "password": "12345",
+    "database": "sajeeldbms",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
   },
   "test": {
     "username": "qfyonlnrmimamk",
