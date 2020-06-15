@@ -2,10 +2,20 @@ const express = require('express');
 const router = express.Router();
 const models = require('../models');
 
+router.get('/', async (req, res) => {
+  try {
+    const getRoutes = await models.Routes.findAll();
+    res.json(getRoutes);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error in getting routes');
+  }
+});
+
 router.post('/', async (req, res) => {
   try {
     const {source, destination, date} = req.body;
-    const getRoutes = await models.Route.findAll({
+    const getRoutes = await models.Routes.findAll({
       where: {
         source_id: source,
         destination_id: destination,
@@ -15,37 +25,29 @@ router.post('/', async (req, res) => {
     res.json(getRoutes);
   } catch (error) {
     console.error(error);
-    res.status(500).send('Error in getting routes');
+    res.status(500).send('Error in getting post-routes');
   }
 });
 
-// router.post('/', async (req, res) => {
-//   try {
-//     const {
-//       bus_id,
-//       source_id,
-//       destination_id,
-//       seat_price,
-//       time,
-//       date,
-//     } = req.body;
+router.post('/create', async (req, res) => {
+  try {
+    const {bus, source, destination, price, time, date} = req.body;
 
-//     const postRoute = await models.Route.create({
-//       bus_id: bus_id,
-//       source_id: source_id,
-//       destination_id,
-//       destination_id,
-//       seat_price: seat_price,
-//       time: timing,
-//       date: date,
-//     });
+    const postRoute = await models.Routes.create({
+      bus_id: bus,
+      source_id: source,
+      destination_id: destination,
+      seat_price: price,
+      time: time,
+      date: date,
+    });
 
-//     res.json('Route Posted Succesfully');
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).send('Error in posting Route');
-//   }
-// });
+    res.json('Route Posted Succesfully');
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error in posting Route');
+  }
+});
 
 router.put('/:id', async (req, res) => {
   try {
@@ -58,7 +60,7 @@ router.put('/:id', async (req, res) => {
       timing,
       seat_price,
     } = req.body;
-    const editRoute = await models.Route.update(
+    const editRoute = await models.Routes.update(
       {
         bus_id: bus_id,
         source_id: source_id,
@@ -84,7 +86,7 @@ router.put('/:id', async (req, res) => {
 router.delete('/:id', async (req, res) => {
   try {
     const id = req.params.id;
-    const deleteRoute = await models.Route.destroy({
+    const deleteRoute = await models.Routes.destroy({
       where: {
         id: id,
       },

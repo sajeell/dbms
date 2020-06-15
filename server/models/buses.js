@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
     status: DataTypes.STRING,
     occupied_seats: DataTypes.STRING
   }, {});
-  Buse.associate = function(models) {
+  Buses.associate = function(models) {
     // associations can be defined here
   };
   return Buses;

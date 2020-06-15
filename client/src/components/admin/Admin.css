@@ -184,3 +184,240 @@
   font-weight: bold;
   font-size: 25px;
 }
+
+/* Admin Dashboard Component */
+.AdminDashboard-wrapper {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.adminDashboard-header {
+  display: flex;
+  padding: 10px;
+  top: 0;
+  left: 0;
+  position: fixed;
+  text-transform: uppercase;
+  background-color: rgb(197, 139, 139);
+}
+
+.adminDashboard-header p {
+  margin: 4px;
+  cursor: pointer;
+}
+
+.adminDashboard-header a {
+  color: inherit;
+  text-decoration: none;
+  font-weight: lighter;
+}
+
+.adminDashboard-header a:hover {
+  color: purple;
+  text-decoration: none;
+}
+
+.header-buttons {
+  display: flex;
+  margin-left: 500px;
+  text-align: left;
+}
+
+/* AddStation Component */
+
+.AddStation-wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 50px;
+  margin-top: 150px;
+  margin-bottom: 230px;
+  padding: 50px;
+  background-color: rgba(250, 235, 215, 0.849);
+}
+
+.AddStation-wrapper input {
+  padding: 10px;
+  margin: 10px;
+  width: 250px;
+  border: 0;
+  text-transform: capitalize;
+}
+
+#station-submit {
+  text-transform: uppercase;
+  margin-left: 18px;
+  cursor: pointer;
+  background-color: white;
+  color: black;
+  border: none;
+}
+
+#station-submit:hover {
+  background-color: black;
+  color: white;
+  border: none;
+}
+
+.addstation-row-0 h4 {
+  text-align: center;
+  user-select: none;
+  text-transform: uppercase;
+  font-size: 1.5em;
+  padding: 10px;
+}
+
+/* Add Route Component */
+
+.AddRoute-wrapper {
+  display: flex;
+  justify-content: space-evenly;
+  background-color: rgba(250, 235, 215, 0.849);
+  padding: 50px;
+  margin: 50px;
+  margin-top: 120px;
+  margin-bottom: 50px;
+}
+
+.AddRoute-wrapper input {
+  padding: 10px;
+  margin: 10px;
+  border: 0;
+  width: 250px;
+  text-transform: capitalize;
+}
+
+#route-submit {
+  text-transform: uppercase;
+  margin-left: 18px;
+  cursor: pointer;
+  background-color: white;
+  color: black;
+  border: none;
+}
+
+#route-submit:hover {
+  background-color: black;
+  color: white;
+  border: none;
+}
+
+.addRoute-row-0 h4 {
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 1.5em;
+  padding: 10px;
+}
+.addRoute-row-1 {
+  display: flex;
+  justify-content: center;
+}
+.addRoute-row-2 {
+  display: flex;
+  justify-content: center;
+}
+.addRoute-row-3 {
+  display: flex;
+  justify-content: center;
+}
+
+#header-image {
+  width: 100px;
+  margin-left: 50px;
+}
+
+/* AddBus Component */
+
+.addBus-wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 50px;
+  margin-top: 170px;
+  margin-bottom: 250px;
+  background-color: rgba(250, 235, 215, 0.849);
+  padding: 50px;
+}
+
+.addBus-wrapper input {
+  padding: 10px;
+  margin: 10px;
+  width: 250px;
+  border: none;
+  text-transform: capitalize;
+}
+
+#bus-submit {
+  text-transform: uppercase;
+  margin-left: 18px;
+  cursor: pointer;
+  background-color: white;
+  color: black;
+  border: none;
+}
+
+#bus-submit:hover {
+  background-color: black;
+  color: white;
+  border: none;
+}
+
+.addBus-row-0 h4 {
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 1.5em;
+  padding: 10px;
+}
+
+/* Admin Dashboard View Table */
+.adminDashboard-stations {
+  display: flex;
+  background-color: rgba(250, 235, 215, 0.849);
+  padding: 50px;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 480px;
+  margin-bottom: 250px;
+}
+
+.adminDashboard-stations table {
+  border: 2px solid black;
+}
+
+.adminDashboard-stations table td {
+  border: 1px solid black;
+  padding: 10px;
+}
+
+.adminDashboard-stations table th {
+  padding: 5px;
+  border: 1px solid black;
+}
+
+.stations-heading {
+  margin-bottom: 20px;
+}
+
+/* Admin Dashboard View Buses */
+.adminDashboard-buses {
+  display: flex;
+  background-color: rgba(250, 235, 215, 0.849);
+  padding: 50px;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 330px;
+  margin-bottom: 250px;
+}
+
+.adminDashboard-buses table {
+  border: 2px solid black;
+}
+
+.adminDashboard-buses table td {
+  border: 1px solid black;
+  padding: 10px;
+}
+
+.adminDashboard-buses table th {
+  padding: 5px;
+  border: 1px solid black;
+}

@@ -13,6 +13,8 @@ app.use(bodyParser.urlencoded({extended: true}));
 const userCredential = require('./routes/userCredential');
 const adminCredential = require('./routes/adminCredential');
 const routes = require('./routes/routes');
+const station = require('./routes/stations');
+const bus = require('./routes/bus');
 
 // Routes
 app.use('/user/authentication', require('./routes/userjwtAuth'));
@@ -20,6 +22,9 @@ app.use('/admin/authentication', require('./routes/adminjwtAuth'));
 app.use('/user/credential', userCredential);
 app.use('/admin/credential', adminCredential);
 app.use('/routes', routes);
+app.use('/station', station);
+app.use('/bus', bus);
+
 const PORT = 5000 || process.env.PORT;
 
 app.listen(PORT, () => {
