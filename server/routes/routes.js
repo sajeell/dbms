@@ -4,7 +4,23 @@ const models = require('../models');
 
 router.get('/', async (req, res) => {
   try {
-    const getRoutes = await models.Routes.findAll();
+    const getRoutes = await models.Routes.findAll({
+      include: [
+        {
+          model: models.Buses,
+        },
+        {
+          model: models.Stations,
+          as: 'Source',
+          foreignKey: 'SourceId',
+        },
+        {
+          model: models.Stations,
+          as: 'Destination',
+          foreignKey: 'DestinationId',
+        },
+      ],
+    });
     res.json(getRoutes);
   } catch (error) {
     console.error(error);
@@ -12,13 +28,39 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.post('/', async (req, res) => {
+router.post('/get-schedules', async (req, res) => {
   try {
     const {source, destination, date} = req.body;
     const getRoutes = await models.Routes.findAll({
+      attributes: [
+        'id',
+        'BusId',
+        'SourceId',
+        'DestinationId',
+        'date',
+        'time',
+        'seat_price',
+        'Source.name',
+        'Destination.name',
+      ],
+      include: [
+        {
+          model: models.Buses,
+        },
+        {
+          model: models.Stations,
+          as: 'Source',
+          foreignKey: 'SourceId',
+        },
+        {
+          model: models.Stations,
+          as: 'Destination',
+          foreignKey: 'DestinationId',
+        },
+      ],
       where: {
-        source_id: source,
-        destination_id: destination,
+        SourceId: source,
+        DestinationId: destination,
         date: date,
       },
     });
@@ -34,9 +76,9 @@ router.post('/create', async (req, res) => {
     const {bus, source, destination, price, time, date} = req.body;
 
     const postRoute = await models.Routes.create({
-      bus_id: bus,
-      source_id: source,
-      destination_id: destination,
+      BusId: bus,
+      SourceId: source,
+      DestinationId: destination,
       seat_price: price,
       time: time,
       date: date,
@@ -49,25 +91,25 @@ router.post('/create', async (req, res) => {
   }
 });
 
-router.put('/:id', async (req, res) => {
+router.post('/:id', async (req, res) => {
   try {
     const id = req.params.id;
     const {
-      bus_id,
-      source_id,
-      destination_id,
-      date,
-      timing,
-      seat_price,
+      editRouteBus,
+      editRouteSource,
+      editRouteDestination,
+      editRouteDate,
+      editRouteTime,
+      editRoutePrice,
     } = req.body;
     const editRoute = await models.Routes.update(
       {
-        bus_id: bus_id,
-        source_id: source_id,
-        destination_id: destination_id,
-        date: date,
-        timing: timing,
-        seat: seat_price,
+        BusId: editRouteBus,
+        SourceId: editRouteSource,
+        DestinationId: editRouteDestination,
+        date: editRouteDate,
+        time: editRouteTime,
+        seat_price: editRoutePrice,
       },
       {
         where: {

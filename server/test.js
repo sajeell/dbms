@@ -1,13 +1,13 @@
 const models = require('./models');
 
 async function getUsers() {
-  const user = await models.User.findAll({
-    where: {
-      email: 'sajeel.ahmed@email.com',
-    },
+  let addUser = await models.Users.create({
+    name: 'Sajeel Ahmad',
+    email: 'Sajeel.ahmed@live.com',
+    password: '12345',
   });
 
-  console.log(user[0].id);
+  console.log(addUser.id);
 }
 
 getUsers();

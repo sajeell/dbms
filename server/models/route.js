@@ -12,9 +12,9 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         allowNull: true,
       },
-      bus_id: DataTypes.INTEGER,
-      source_id: DataTypes.INTEGER,
-      destination_id: DataTypes.INTEGER,
+      BusId: DataTypes.INTEGER,
+      SourceId: DataTypes.INTEGER,
+      DestinationId: DataTypes.INTEGER,
       seat_price: DataTypes.INTEGER,
       date: DataTypes.DATE,
       time: DataTypes.STRING,
@@ -22,7 +22,15 @@ module.exports = (sequelize, DataTypes) => {
     {}
   );
   Routes.associate = function (models) {
-    // associations can be defined here
+    Routes.belongsTo(models.Buses);
+    Routes.belongsTo(models.Stations, {
+      as: 'Source',
+      foreignKey: 'SourceId',
+    });
+    Routes.belongsTo(models.Stations, {
+      as: 'Destination',
+      foreignKey: 'DestinationId',
+    });
   };
   return Routes;
 };

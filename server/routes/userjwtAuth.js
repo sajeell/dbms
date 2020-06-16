@@ -9,12 +9,12 @@ const models = require('../models');
 //authorizeentication
 
 router.post('/register', validInfo, async (req, res) => {
-  const {id, email, name, password} = req.body;
+  const { email, name, password} = req.body;
 
   try {
-    const user = await models.User.findAll({
+    const user = await models.Users.findAll({
       where: {
-        id: id,
+        email: email,
       },
     });
     if (user.length > 0) {
@@ -24,7 +24,7 @@ router.post('/register', validInfo, async (req, res) => {
     const salt = await bcrypt.genSalt(12.194);
     const bcryptPassword = await bcrypt.hash(password, salt);
 
-    let addUser = await models.User.create({
+    let addUser = await models.Users.create({
       name: name,
       email: email,
       password: bcryptPassword,
@@ -43,7 +43,7 @@ router.post('/login', validInfo, async (req, res) => {
   const {email, password} = req.body;
 
   try {
-    const user = await models.User.findAll({
+    const user = await models.Users.findAll({
       where: {
         email: email,
       },

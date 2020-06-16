@@ -7,22 +7,22 @@ const jwtGenerator = require('../utils/adminjwtGenerator');
 const authorize = require('../middleware/adminAuthorize');
 
 router.post('/register', validInfo, async (req, res) => {
-  const {id, email, name, password} = req.body;
+  const {email, name, password} = req.body;
 
   try {
-    const user = await models.Admin.findAll({
+    const user = await models.Admins.findAll({
       where: {
-        id: id,
+        email: email,
       },
     });
     if (user.length > 0) {
-      return res.status(401).json('Admin already exist!');
+      return res.status(401).json('Admins already exist!');
     }
 
     const salt = await bcrypt.genSalt(9);
     const bcryptPassword = await bcrypt.hash(password, salt);
 
-    let addUser = await models.User.create({
+    let addUser = await models.Admins.create({
       name: name,
       email: email,
       password: bcryptPassword,
@@ -33,7 +33,7 @@ router.post('/register', validInfo, async (req, res) => {
     return res.json({adminjwtToken});
   } catch (err) {
     console.error(err);
-    res.status(500).send('Error in registering admin');
+    res.status(500).send('Error in registering Admins');
   }
 });
 
@@ -41,7 +41,7 @@ router.post('/login', validInfo, async (req, res) => {
   const {email, password} = req.body;
 
   try {
-    const user = await models.Admin.findAll({
+    const user = await models.Admins.findAll({
       where: {
         email: email,
       },
@@ -58,7 +58,7 @@ router.post('/login', validInfo, async (req, res) => {
     return res.json({adminjwtToken});
   } catch (err) {
     console.error(err);
-    res.status(500).send('Error in admin login');
+    res.status(500).send('Error in Admins login');
   }
 });
 
@@ -67,7 +67,7 @@ router.post('/verify', authorize, (req, res) => {
     res.json(true);
   } catch (err) {
     console.error(err.message);
-    res.status(500).send('Error in admin verification');
+    res.status(500).send('Error in Admins verification');
   }
 });
 

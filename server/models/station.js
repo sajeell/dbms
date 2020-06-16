@@ -28,6 +28,12 @@ module.exports = (sequelize, DataTypes) => {
   );
   Stations.associate = function (models) {
     // associations can be defined here
+    Stations.hasMany(models.Routes, {
+      foreignKey: 'SourceId',
+    });
+    Stations.hasMany(models.Routes, {
+      foreignKey: 'DestinationId',
+    });
   };
   return Stations;
 };
