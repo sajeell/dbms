@@ -107,29 +107,11 @@ export default function AddRoute() {
     setTime(e.target.value);
   };
 
-  const addRouteForm = async () => {
-    try {
-      const body = { bus, destination, source, date, time, price };
-      const response = await fetch("http://localhost:5000/routes/create", {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify(body),
-      });
-      const parseData = await response.json();
-      alert(parseData);
-    } catch (error) {
-      console.error(error);
-      console.error("Error in posting station");
-    }
-  };
-
   return (
     <div className='AddRoute-wrapper'>
       <form>
         <div className='addRoute-row-0'>
-          <h4>Add Route</h4>
+          <h4>Add Schedule</h4>
         </div>
         <div className='addRoute-row-1'>
           <FormControl className={classes.formControl}>

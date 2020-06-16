@@ -10,7 +10,7 @@
 
 .admin-login-form {
   background-color: white;
-  margin-left: 450px;
+  margin-left: 400px;
   margin-top: 120px;
   width: 450px;
   padding: 5px;
@@ -56,7 +56,7 @@
 }
 
 #admin-login-button:hover {
-  background-color: black;
+  background-color: lightsalmon;
   color: white;
 }
 
@@ -84,6 +84,7 @@
   margin: 14px;
   font-weight: bold;
   font-size: 25px;
+  user-select: none;
 }
 
 .Register-wrapper {
@@ -98,7 +99,7 @@
 
 .register-form {
   background-color: white;
-  margin-left: 450px;
+  margin-left: 400px;
   margin-top: 120px;
   width: 450px;
   padding: 5px;
@@ -155,7 +156,7 @@
 }
 
 #register-button:hover {
-  background-color: black;
+  background-color: lightsalmon;
   color: white;
 }
 
@@ -183,6 +184,7 @@
   margin: 14px;
   font-weight: bold;
   font-size: 25px;
+  user-select: none;
 }
 
 /* Admin Dashboard Component */
@@ -420,4 +422,34 @@
 .adminDashboard-buses table th {
   padding: 5px;
   border: 1px solid black;
+}
+
+/* Admin Dashboard View Buses */
+.adminDashboard-routes {
+  display: flex;
+  background-color: rgba(250, 235, 215, 0.849);
+  padding: 50px;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 330px;
+  margin-bottom: 250px;
+}
+
+.adminDashboard-routes table {
+  border: 2px solid black;
+}
+
+.adminDashboard-routes table td {
+  border: 1px solid black;
+  padding: 10px;
+}
+
+.adminDashboard-routes table th {
+  padding: 5px;
+  border: 1px solid black;
+}
+
+#book-seat-button:hover {
+  color: white;
+  background-color: palevioletred;
 }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -18,18 +18,36 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ({ getSource, getDestination, getDate }) {
+export default function Main() {
   const classes = useStyles();
-  const [source, setSource] = useState("");
-  const [destination, setDestination] = useState("");
+  const [source, setSource] = useState();
+  const [destination, setDestination] = useState();
   const [date, setDate] = useState("");
+  const [station, setStation] = useState([]);
+
+  const getStations = async () => {
+    try {
+      const getStation = await fetch("http://localhost:5000/station", {
+        method: "GET",
+      });
+      const parseData = await getStation.json();
+      setStation(parseData);
+    } catch (error) {
+      console.error(error);
+      console.error("Error while getting stations in add route component");
+    }
+  };
+
+  useEffect(() => {
+    getStations();
+  }, []);
 
   function handleSource(e) {
-    setSource(e.target.value);
+    setSource(e);
   }
 
   function handleDestination(e) {
-    setDestination(e.target.value);
+    setDestination(e);
   }
 
   function handleDate(e) {
@@ -37,9 +55,16 @@ export default function ({ getSource, getDestination, getDate }) {
   }
 
   function submitForm() {
-    getSource("Islamabad");
-    getDestination("Peshawar");
-    getDate("2020-06-16");
+    if (source === destination) {
+      alert("Invalid Entries");
+      return;
+    }
+    alert(`${source}-${destination}-${date}`);
+    window.localStorage.setItem("source_id", source);
+    window.localStorage.setItem("destination_id", destination);
+    window.localStorage.setItem("date", date);
+
+    window.location.replace("/schedule");
   }
 
   return (
@@ -55,30 +80,34 @@ export default function ({ getSource, getDestination, getDate }) {
         <div className='input-1'>
           <FormControl className={classes.formControl}>
             <InputLabel id='select-source'>Source</InputLabel>
-            <Select
-              labelId='demo-simple-select-label'
-              id='demo-simple-select'
-              value={source}
-              onChange={handleSource}
-            >
-              <MenuItem value={null}>None</MenuItem>
-              <MenuItem value={20}>Twenty</MenuItem>
-              <MenuItem value={30}>Thirty</MenuItem>
+            <Select labelId='demo-simple-select-label' id='demo-simple-select'>
+              {station.map((station) => (
+                <MenuItem
+                  value={station.id}
+                  onClick={() => {
+                    handleSource(station.id);
+                  }}
+                >
+                  {station.id} - {station.name}
+                </MenuItem>
+              ))}
             </Select>
           </FormControl>
         </div>
         <div className='input-2'>
           <FormControl className={classes.formControl}>
             <InputLabel id='select-destination'>Destination</InputLabel>
-            <Select
-              labelId='demo-simple-select-label'
-              id='demo-simple-select'
-              value={destination}
-              onChange={handleDestination}
-            >
-              <MenuItem value={null}>None</MenuItem>
-              <MenuItem value={20}>Twenty</MenuItem>
-              <MenuItem value={30}>Thirty</MenuItem>
+            <Select labelId='demo-simple-select-label' id='demo-simple-select'>
+              {station.map((station) => (
+                <MenuItem
+                  value={station.id}
+                  onClick={() => {
+                    handleDestination(station.id);
+                  }}
+                >
+                  {station.id} - {station.name}
+                </MenuItem>
+              ))}
             </Select>
           </FormControl>
         </div>

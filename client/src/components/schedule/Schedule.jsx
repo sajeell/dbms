@@ -6,17 +6,22 @@ export default function Schedule() {
   const [schedules, setSchedules] = useState([]);
   const getSchdule = async () => {
     try {
-      const source = 1;
-      const destination = 2;
-      const date = "2020-06-15";
+      const source = parseInt(window.localStorage.getItem("source_id"));
+      const destination = parseInt(
+        window.localStorage.getItem("destination_id")
+      );
+      const date = window.localStorage.getItem("date");
       const body = { source, destination, date };
-      const response = await fetch(`http://localhost:5000/routes`, {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify(body),
-      });
+      const response = await fetch(
+        `http://localhost:5000/routes/get-schedules`,
+        {
+          method: "POST",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify(body),
+        }
+      );
 
       const jsonData = await response.json(); // Parser
       setSchedules(jsonData);
@@ -36,27 +41,23 @@ export default function Schedule() {
         <tbody id='all-routes-table'>
           <tr>
             <th>ID</th>
-            <th>Route #</th>
             <th>Bus #</th>
-            <th>Price</th>
-            <th>Seats Left</th>
             <th>Source</th>
             <th>Destination</th>
             <th>Time</th>
             <th>Date</th>
+            <th>Price</th>
             <th>Book</th>
           </tr>
-          {schedules.forEach((schedule) => (
-            <tr>
+          {schedules.map((schedule) => (
+            <tr key={schedule.id}>
               <td>{schedule.id}</td>
-              <td>{schedule.bus_id}</td>
-              <td>{schedule.source_id}</td>
-              <td>{schedule.destination_id}</td>
+              <td>{schedule.BusId}</td>
+              <td>{schedule.Source.name}</td>
+              <td>{schedule.Destination.name}</td>
+              <td>{schedule.time}</td>
               <td>{schedule.date}</td>
-              <td>{schedule.timing}</td>
               <td>{schedule.seat_price}</td>
-              <td>{}</td>
-              <td>{}</td>
               <td id='book-seat-button'>Book</td>
             </tr>
           ))}

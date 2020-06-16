@@ -26,10 +26,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function MenuAppBar() {
+export default function MenuAppBar({ setAuth }) {
   const classes = useStyles();
-  //   const [auth, setAuth] = React.useState(false);
-  const auth = true;
+
+  let auth = true;
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
 
@@ -39,6 +39,19 @@ export default function MenuAppBar() {
 
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const logout = async (e) => {
+    e.preventDefault();
+    try {
+      auth = false;
+      localStorage.removeItem("customer_token");
+      setAuth(false);
+      alert("Customer Logged Out");
+      window.location.replace("/login");
+    } catch (err) {
+      console.error(err.message);
+    }
   };
 
   return (
@@ -82,6 +95,7 @@ export default function MenuAppBar() {
               >
                 <MenuItem onClick={handleClose}>Profile</MenuItem>
                 <MenuItem onClick={handleClose}>My account</MenuItem>
+                <MenuItem onClick={logout}>Logout</MenuItem>
               </Menu>
             </div>
           )}
