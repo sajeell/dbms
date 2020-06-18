@@ -4,7 +4,9 @@ const models = require('../models');
 
 router.get('/', async (req, res) => {
   try {
-    const getBuses = await models.Buses.findAll({});
+    const getBuses = await models.Buses.findAll({
+      order: [['id', 'ASC']],
+    });
     res.json(getBuses);
   } catch (error) {
     console.error(error);

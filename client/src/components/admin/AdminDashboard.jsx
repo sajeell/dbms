@@ -1,24 +1,24 @@
-import React, { useState, useEffect } from "react";
-import AddStation from "./AddStation";
-import AddBus from "./AddBus";
-import AddRoute from "./AddRoute";
-import { Switch, Redirect, Route } from "react-router-dom";
-import AdminLogin from "./AdminLogin";
-import AdminRegister from "./AdminRegister";
-import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
-import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import { makeStyles } from "@material-ui/core/styles";
-import InputLabel from "@material-ui/core/InputLabel";
-import MenuItem from "@material-ui/core/MenuItem";
-import FormControl from "@material-ui/core/FormControl";
-import Select from "@material-ui/core/Select";
+import React, {useState, useEffect} from 'react';
+import AddStation from './AddStation';
+import AddBus from './AddBus';
+import AddRoute from './AddRoute';
+import {Switch, Redirect, Route} from 'react-router-dom';
+import AdminLogin from './AdminLogin';
+import AdminRegister from './AdminRegister';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import {makeStyles} from '@material-ui/core/styles';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   formControl: {
     margin: theme.spacing(1),
     width: 250,
@@ -40,16 +40,16 @@ export default function AdminDashboard() {
   const [editRouteSource, setEditRouteSource] = useState(0);
   const [editRouteDestination, setEditRouteDestination] = useState(0);
   const [editRoutePrice, setEditRoutePrice] = useState(0);
-  const [editRouteDate, setEditRouteDate] = useState("");
-  const [editRouteTime, setEditRouteTime] = useState("");
+  const [editRouteDate, setEditRouteDate] = useState('');
+  const [editRouteTime, setEditRouteTime] = useState('');
 
   const checkAuthenticated = async () => {
     try {
       const res = await fetch(
-        "http://localhost:5000/admin/authentication/verify",
+        'http://localhost:5000/admin/authentication/verify',
         {
-          method: "POST",
-          headers: { admin_jwt_token: localStorage.admin_token },
+          method: 'POST',
+          headers: {admin_jwt_token: localStorage.admin_token},
         }
       );
 
@@ -66,48 +66,48 @@ export default function AdminDashboard() {
 
   const getStations = async () => {
     try {
-      const getStation = await fetch("http://localhost:5000/station", {
-        method: "GET",
+      const getStation = await fetch('http://localhost:5000/station', {
+        method: 'GET',
       });
       const parseData = await getStation.json();
       setStation(parseData);
     } catch (error) {
       console.error(error);
-      console.error("Error while getting stations in add route component");
+      console.error('Error while getting stations in add route component');
     }
   };
 
   const getBuses = async () => {
     try {
-      const getBus = await fetch("http://localhost:5000/bus", {
-        method: "GET",
+      const getBus = await fetch('http://localhost:5000/bus', {
+        method: 'GET',
       });
       const parseData = await getBus.json();
       setBuses(parseData);
     } catch (error) {
       console.error(error);
-      console.error("Error while getting buses in add route component");
+      console.error('Error while getting buses in add route component');
     }
   };
 
   const getSchedule = async () => {
     try {
       const response = await fetch(`http://localhost:5000/routes`, {
-        method: "GET",
+        method: 'GET',
       });
 
       const jsonData = await response.json(); // Parser
       setSchedules(jsonData);
     } catch (error) {
       console.error(error);
-      console.log("Error in getting schedules");
+      console.log('Error in getting schedules');
     }
   };
 
-  const deleteRoute = async (id) => {
+  const deleteRoute = async id => {
     try {
       const response = await fetch(`http://localhost:5000/routes/${id}`, {
-        method: "DELETE",
+        method: 'DELETE',
       });
 
       const jsonData = await response.json(); // Parser
@@ -115,14 +115,14 @@ export default function AdminDashboard() {
       window.location.reload();
     } catch (error) {
       console.error(error);
-      alert("Error in deleting schedules");
+      alert('Error in deleting schedules');
     }
   };
 
-  const logout = async (e) => {
+  const logout = async e => {
     e.preventDefault();
-    window.localStorage.removeItem("admin_token");
-    alert("Succesfully Logged Out");
+    window.localStorage.removeItem('admin_token');
+    alert('Succesfully Logged Out');
     window.location.reload();
   };
 
@@ -146,20 +146,20 @@ export default function AdminDashboard() {
     setOpen(false);
   };
 
-  const handleForm = async (id) => {
+  const handleForm = async id => {
     try {
       if (editRouteSource === editRouteDestination) {
-        alert("Invalid Entry");
+        alert('Invalid Entry');
         return;
       } else if (
         editRouteBus === 0 ||
         editRouteSource === 0 ||
         editRouteDestination === 0 ||
-        editRouteDate === "" ||
-        editRouteTime === "" ||
+        editRouteDate === '' ||
+        editRouteTime === '' ||
         editRoutePrice === 0
       ) {
-        alert("Missing Data");
+        alert('Missing Data');
         return;
       }
       const body = {
@@ -171,9 +171,9 @@ export default function AdminDashboard() {
         editRoutePrice,
       };
       const response = await fetch(`http://localhost:5000/routes/${id}`, {
-        method: "POST",
+        method: 'POST',
         headers: {
-          "Content-type": "application/json",
+          'Content-type': 'application/json',
         },
         body: JSON.stringify(body),
       });
@@ -184,124 +184,156 @@ export default function AdminDashboard() {
       window.location.reload();
     } catch (error) {
       console.error(error);
-      alert("Error in updating schedules");
+      alert('Error in updating schedules');
     }
   };
 
-  const setAuth = (boolean) => {
+  const setAuth = boolean => {
     setIsAuthenticated(boolean);
   };
 
-  const handleEditRouteBus = (e) => {
+  const handleEditRouteBus = e => {
     setEditRouteBus(e);
   };
 
-  const handleEditRouteSource = (e) => {
+  const handleEditRouteSource = e => {
     setEditRouteSource(e);
   };
 
-  const handleEditRouteDestination = (e) => {
+  const handleEditRouteDestination = e => {
     setEditRouteDestination(e);
   };
 
-  const handleEditRoutePrice = (e) => {
+  const handleEditRoutePrice = e => {
     e.preventDefault();
     setEditRoutePrice(e.target.value);
   };
 
-  const handleEditRouteTime = (e) => {
+  const handleEditRouteTime = e => {
     e.preventDefault();
     setEditRouteTime(e.target.value);
   };
 
-  const handleEditRouteDate = (e) => {
+  const handleEditRouteDate = e => {
     e.preventDefault();
     setEditRouteDate(e.target.value);
   };
 
+  const completeRoute = async (
+    RouteId,
+    SourceId,
+    DestinatonId,
+    ScheduledDate,
+    price,
+    BusId
+  ) => {
+    try {
+      const body = {
+        RouteId,
+        SourceId,
+        DestinatonId,
+        ScheduledDate,
+        price,
+        BusId,
+      };
+
+      const response = await fetch('http://localhost:5000/routes/complete', {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json',
+        },
+        body: JSON.stringify(body),
+      });
+
+      const parseData = await response.json();
+      alert(parseData);
+    } catch (error) {
+      console.error(error);
+      alert('Error in completing Route FrontEnd');
+    }
+  };
+
   return (
-    <div className='AdminDashboard-wrapper'>
+    <div className="AdminDashboard-wrapper">
       <Switch>
         <Route
           exact
-          path='/admin/login'
-          render={(props) =>
+          path="/admin/login"
+          render={props =>
             !isAuthenticated ? (
               <AdminLogin {...props} setAuth={setAuth} />
             ) : (
-              <Redirect to='/admin/dashboard' />
+              <Redirect to="/admin/dashboard" />
             )
           }
         />
 
         <Route
           exact
-          path='/admin/register'
-          render={(props) =>
+          path="/admin/register"
+          render={props =>
             !isAuthenticated ? (
               <AdminRegister {...props} setAuth={setAuth} />
             ) : (
-              <Redirect to='/admin/dashboard' />
+              <Redirect to="/admin/dashboard" />
             )
           }
         />
 
         <Route
-          path='/admin/dashboard'
-          render={(props) =>
+          path="/admin/dashboard"
+          render={props =>
             isAuthenticated ? (
               <div>
-                <header className='adminDashboard-header'>
-                  <div className='header-logo'>
-                    <a href='/admin/dashboard'>
+                <header className="adminDashboard-header">
+                  <div className="header-logo">
+                    <a href="/admin/dashboard">
                       <img
-                        src='https://i.ibb.co/47dwHKJ/toppng-com-bus-clipart-logo-travel-bus-logo-832x423.png'
-                        alt='logo'
-                        id='header-image'
-                      ></img>
+                        src="https://i.ibb.co/47dwHKJ/toppng-com-bus-clipart-logo-travel-bus-logo-832x423.png"
+                        alt="logo"
+                        id="header-image"></img>
                     </a>
                   </div>
-                  <div className='header-buttons'>
-                    <a href='#add/station'>
-                      <p id='admin-header-1'>Add Station</p>
+                  <div className="header-buttons">
+                    <a href="#add/station">
+                      <p id="admin-header-1">Add Station</p>
                     </a>
-                    <a href='#add/bus'>
-                      <p id='admin-header-2'>Add Bus</p>
+                    <a href="#add/bus">
+                      <p id="admin-header-2">Add Bus</p>
                     </a>
-                    <a href='#add/route'>
-                      <p id='admin-header-3'>Add Route</p>
+                    <a href="#add/route">
+                      <p id="admin-header-3">Add Route</p>
                     </a>
-                    <a href='#view/station'>
-                      <p id='admin-header-4'>View Stations</p>
+                    <a href="#view/station">
+                      <p id="admin-header-4">View Stations</p>
                     </a>
-                    <a href='#view/bus'>
-                      <p id='admin-header-5'>View Buses</p>
+                    <a href="#view/bus">
+                      <p id="admin-header-5">View Buses</p>
                     </a>
-                    <a href='#view/route'>
-                      <p id='admin-header-6'>View Schedules</p>
+                    <a href="#view/route">
+                      <p id="admin-header-6">View Schedules</p>
                     </a>
 
                     <p
-                      id='admin-header-7'
-                      onClick={(e) => {
+                      id="admin-header-7"
+                      onClick={e => {
                         logout(e);
-                      }}
-                    >
+                      }}>
                       Log Out
                     </p>
                   </div>
                 </header>
-                <div id='add/station'>
+                <div id="add/station">
                   <AddStation />
                 </div>
-                <div id='add/bus'>
+                <div id="add/bus">
                   <AddBus />
                 </div>
-                <div id='add/route'>
+                <div id="add/route">
                   <AddRoute />
                 </div>
-                <div id='view/station' className='adminDashboard-stations'>
-                  <div className='stations-heading'>
+                <div id="view/station" className="adminDashboard-stations">
+                  <div className="stations-heading">
                     <h2>VIEW STATIONS</h2>
                   </div>
                   <table>
@@ -311,7 +343,7 @@ export default function AdminDashboard() {
                       <th>ADDRESS</th>
                       <th>CITY</th>
                     </tr>
-                    {station.map((item) => (
+                    {station.map(item => (
                       <tr key={item.id}>
                         <td>{item.id}</td>
                         <td>{item.name}</td>
@@ -321,8 +353,8 @@ export default function AdminDashboard() {
                     ))}
                   </table>
                 </div>
-                <div id='view/bus' className='adminDashboard-buses'>
-                  <div className='stations-heading'>
+                <div id="view/bus" className="adminDashboard-buses">
+                  <div className="stations-heading">
                     <h2>VIEW BUSES</h2>
                   </div>
                   <table>
@@ -332,15 +364,14 @@ export default function AdminDashboard() {
                       <th>CAPACITY</th>
                       <th>STATUS</th>
                     </tr>
-                    {buses.map((item) => (
+                    {buses.map(item => (
                       <tr key={item.id}>
                         <td>{item.id}</td>
                         <td>
                           <img
                             src={item.picture_link}
-                            alt='Snap of bus not found'
-                            style={{ width: 150 }}
-                          ></img>
+                            alt="Snap of bus not found"
+                            style={{width: 150}}></img>
                         </td>
                         <td>{item.seats}</td>
                         <td>{item.status}</td>
@@ -348,12 +379,12 @@ export default function AdminDashboard() {
                     ))}
                   </table>
                 </div>
-                <div id='view/route' className='adminDashboard-routes'>
-                  <div className='stations-heading'>
+                <div id="view/route" className="adminDashboard-routes">
+                  <div className="stations-heading">
                     <h2>VIEW SCHEDULES</h2>
                   </div>
                   <table>
-                    <tbody id='all-routes-table'>
+                    <tbody id="all-routes-table">
                       <tr>
                         <th>ID</th>
                         <th>Bus #</th>
@@ -367,7 +398,7 @@ export default function AdminDashboard() {
                         <th>Edit</th>
                         <th>COMPLETE</th>
                       </tr>
-                      {schedules.map((schedule) => (
+                      {schedules.map(schedule => (
                         <tr key={schedule.id}>
                           <td>{schedule.id}</td>
                           <td>{schedule.BusId}</td>
@@ -382,22 +413,20 @@ export default function AdminDashboard() {
                           <td>{schedule.date}</td>
                           <td>{schedule.seat_price}</td>
                           <td
-                            id='book-seat-button'
+                            id="book-seat-button"
                             onClick={() => {
                               deleteRoute(schedule.id);
-                            }}
-                          >
+                            }}>
                             DELETE
                           </td>
-                          <td id='book-seat-button' onClick={handleClickOpen}>
-                            {" "}
+                          <td id="book-seat-button" onClick={handleClickOpen}>
+                            {' '}
                             EDIT
                             <Dialog
                               open={open}
                               onClose={handleClose}
-                              aria-labelledby='form-dialog-title'
-                            >
-                              <DialogTitle id='form-dialog-title'>
+                              aria-labelledby="form-dialog-title">
+                              <DialogTitle id="form-dialog-title">
                                 EDIT ROUTE
                               </DialogTitle>
                               <DialogContent>
@@ -406,63 +435,60 @@ export default function AdminDashboard() {
                                   attributes
                                 </DialogContentText>
                                 <FormControl className={classes.formControl}>
-                                  <InputLabel id='select-source'>
+                                  <InputLabel id="select-source">
                                     Bus
                                   </InputLabel>
-                                  <Select labelId='-label' id=''>
-                                    {buses.map((bus) => (
+                                  <Select labelId="-label" id="">
+                                    {buses.map(bus => (
                                       <MenuItem
                                         style={{
-                                          display: "flex",
-                                          justifyContent: "center",
+                                          display: 'flex',
+                                          justifyContent: 'center',
                                         }}
                                         value={bus.id}
                                         onClick={() => {
                                           handleEditRouteBus(bus.id);
-                                        }}
-                                      >
-                                        {bus.id} -{" "}
+                                        }}>
+                                        {bus.id} -{' '}
                                         <img
                                           src={bus.picture_link}
-                                          id='bus-image'
-                                          alt=''
+                                          id="bus-image"
+                                          alt=""
                                           style={{
-                                            height: "50px",
-                                            marginLeft: "50px",
-                                          }}
-                                        ></img>
+                                            height: '50px',
+                                            marginLeft: '50px',
+                                          }}></img>
                                       </MenuItem>
                                     ))}
                                   </Select>
                                 </FormControl>
                                 <FormControl className={classes.formControl}>
-                                  <InputLabel id='select-source'>
+                                  <InputLabel id="select-source">
                                     Source
                                   </InputLabel>
-                                  <Select labelId='-label' id=''>
-                                    {station.map((item) => (
+                                  <Select labelId="-label" id="">
+                                    {station.map(item => (
                                       <MenuItem
                                         style={{
-                                          display: "flex",
-                                          justifyContent: "center",
+                                          display: 'flex',
+                                          justifyContent: 'center',
                                         }}
                                         key={item.id}
                                         value={item.id}
                                         onClick={() => {
                                           handleEditRouteSource(item.id);
-                                        }}
-                                      >
+                                        }}>
                                         {item.id} - {item.name}
                                       </MenuItem>
                                     ))}
                                   </Select>
                                 </FormControl>
                                 <FormControl className={classes.formControl}>
-                                  <InputLabel id='select-source'>
+                                  <InputLabel id="select-source">
                                     Destination
                                   </InputLabel>
-                                  <Select labelId='-label' id=''>
-                                    {station.map((element) => (
+                                  <Select labelId="-label" id="">
+                                    {station.map(element => (
                                       <MenuItem
                                         value={element.id}
                                         key={element.id}
@@ -470,8 +496,7 @@ export default function AdminDashboard() {
                                           handleEditRouteDestination(
                                             element.id
                                           );
-                                        }}
-                                      >
+                                        }}>
                                         {element.id} - {element.name}
                                       </MenuItem>
                                     ))}
@@ -479,53 +504,65 @@ export default function AdminDashboard() {
                                 </FormControl>
                                 <TextField
                                   autoFocus
-                                  margin='dense'
-                                  id='edit-name'
-                                  type='date'
+                                  margin="dense"
+                                  id="edit-name"
+                                  type="date"
                                   value={editRouteDate}
                                   onChange={handleEditRouteDate}
                                 />
                                 <TextField
                                   autoFocus
-                                  margin='dense'
-                                  id='edit-name'
-                                  placeholder='Time Format: XX:XX (24-Hour)'
-                                  label='Time'
-                                  type='text'
+                                  margin="dense"
+                                  id="edit-name"
+                                  placeholder="Time Format: XX:XX (24-Hour)"
+                                  label="Time"
+                                  type="text"
                                   fullWidth
                                   value={editRouteTime}
                                   onChange={handleEditRouteTime}
                                 />
                                 <TextField
                                   autoFocus
-                                  margin='dense'
-                                  id='edit-name'
-                                  placeholder='Cost per Seat'
-                                  label='Price'
-                                  type='text'
+                                  margin="dense"
+                                  id="edit-name"
+                                  placeholder="Cost per Seat"
+                                  label="Price"
+                                  type="text"
                                   fullWidth
                                   value={editRoutePrice}
-                                  onChange={(e) => {
+                                  onChange={e => {
                                     handleEditRoutePrice(e);
                                   }}
                                 />
                               </DialogContent>
                               <DialogActions>
-                                <Button onClick={handleClose} color='primary'>
+                                <Button onClick={handleClose} color="primary">
                                   CANCEL
                                 </Button>
                                 <Button
                                   onClick={() => {
                                     handleForm(schedule.id);
                                   }}
-                                  color='primary'
-                                >
+                                  color="primary">
                                   SAVE
                                 </Button>
                               </DialogActions>
                             </Dialog>
                           </td>
-                          <td id='book-seat-button'>COMPLETE</td>
+                          <td
+                            id="book-seat-button"
+                            onClick={() => {
+                              completeRoute(
+                                schedule.id,
+                                schedule.SourceId,
+                                schedule.DestinationId,
+                                schedule.date,
+                                schedule.seat_price,
+                                schedule.BusId
+                              );
+                            }}>
+                            COMPLETE
+                          </td>
                         </tr>
                       ))}
                     </tbody>
@@ -533,7 +570,7 @@ export default function AdminDashboard() {
                 </div>
               </div>
             ) : (
-              <Redirect to='/admin/login' />
+              <Redirect to="/admin/login" />
             )
           }
         />

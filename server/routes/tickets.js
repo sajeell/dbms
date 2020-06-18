@@ -72,7 +72,7 @@ router.post('/', async (req, res) => {
     });
 
     let seats = parseInt(getBusSeats.occupied_seats) + parseInt(quantity);
-    console.log(`\n\n\n Seats: ${getBusSeats.occupied_seats}`);
+
     const incrementBusId = await models.Buses.update(
       {
         occupied_seats: seats,

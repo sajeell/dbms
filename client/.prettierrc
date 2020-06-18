@@ -1,0 +1,40 @@
+{
+  "overrides": [
+    {
+      "files": "*.js",
+      "options": {
+        "arrowParens": "avoid",
+        "bracketSpacing": false,
+        "jsxBracketSameLine": true,
+        "semi-colon": false,
+        "printWidth": 80,
+        "singleQuote": true,
+        "trailingComma": "es5"
+      }
+    },
+    {
+      "files": "*.jsx",
+      "options": {
+        "arrowParens": "avoid",
+        "bracketSpacing": false,
+        "jsxBracketSameLine": true,
+        "semi-colon": false,
+        "printWidth": 80,
+        "singleQuote": true,
+        "trailingComma": "es5"
+      }
+    },
+    {
+      "files": "*.md",
+      "options": {
+        "arrowParens": "always",
+        "bracketSpacing": true,
+        "jsxBracketSameLine": true,
+        "printWidth": 66,
+        "proseWrap": "never",
+        "singleQuote": true,
+        "trailingComma": "none"
+      }
+    }
+  ]
+}

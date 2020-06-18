@@ -65,12 +65,12 @@ export default function AddRoute() {
         },
         body: JSON.stringify(body),
       });
-      const parseData = response.json();
-      console.log(parseData);
-      alert("Route Added");
+      const parseData = await response.json();
+      alert(parseData);
+
     } catch (error) {
       console.error(error);
-      console.error("Error while posting stations add route component");
+      alert("Error while posting stations add route component");
     }
   };
 

@@ -84,10 +84,42 @@ router.post('/create', async (req, res) => {
       date: date,
     });
 
-    res.json('Route Posted Succesfully');
+    res.json('Schedule Posted Succesfully');
   } catch (error) {
     console.error(error);
     res.status(500).send('Error in posting Route');
+  }
+});
+
+router.post('/complete', async (req, res) => {
+  try {
+    const {
+      RouteId,
+      SourceId,
+      DestinationId,
+      ScheduledDate,
+      price,
+      BusId,
+    } = req.body;
+
+    const deleteRoute = await models.Routes.destroy({
+      where: {
+        id: RouteId,
+      },
+    });
+
+    const archiveRoute = await models.PreviousTrip.create({
+      RouteId: RouteId,
+      SourceId: SourceId,
+      DestinationId: DestinationId,
+      ScheduledDate: ScheduledDate,
+      price: price,
+      BusId: BusId,
+    });
+    res.json('Scheduled Succesfully Archived');
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error in completing Route in Backend');
   }
 });
 
