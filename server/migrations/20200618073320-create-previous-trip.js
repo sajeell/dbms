@@ -14,6 +14,9 @@ module.exports = {
       SourceId: {
         type: Sequelize.INTEGER,
       },
+      DestinationId: {
+        type: Sequelize.INTEGER,
+      },
       BusId: {
         type: Sequelize.INTEGER,
       },

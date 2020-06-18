@@ -96,12 +96,12 @@ router.post('/complete', async (req, res) => {
     const {
       RouteId,
       SourceId,
-      DestinationId,
       ScheduledDate,
       price,
       BusId,
+      DestinationId,
     } = req.body;
-
+    console.log(DestinationId);
     const deleteRoute = await models.Routes.destroy({
       where: {
         id: RouteId,
@@ -111,10 +111,10 @@ router.post('/complete', async (req, res) => {
     const archiveRoute = await models.PreviousTrip.create({
       RouteId: RouteId,
       SourceId: SourceId,
-      DestinationId: DestinationId,
       ScheduledDate: ScheduledDate,
       price: price,
       BusId: BusId,
+      DestinationId: DestinationId,
     });
     res.json('Scheduled Succesfully Archived');
   } catch (error) {

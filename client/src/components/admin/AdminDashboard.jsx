@@ -17,6 +17,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import ViewArchived from './ViewArchived';
 
 const useStyles = makeStyles(theme => ({
   formControl: {
@@ -222,7 +223,7 @@ export default function AdminDashboard() {
   const completeRoute = async (
     RouteId,
     SourceId,
-    DestinatonId,
+    DestinationId,
     ScheduledDate,
     price,
     BusId
@@ -231,7 +232,7 @@ export default function AdminDashboard() {
       const body = {
         RouteId,
         SourceId,
-        DestinatonId,
+        DestinationId,
         ScheduledDate,
         price,
         BusId,
@@ -247,6 +248,7 @@ export default function AdminDashboard() {
 
       const parseData = await response.json();
       alert(parseData);
+      window.location.reload();
     } catch (error) {
       console.error(error);
       alert('Error in completing Route FrontEnd');
@@ -555,7 +557,7 @@ export default function AdminDashboard() {
                               completeRoute(
                                 schedule.id,
                                 schedule.SourceId,
-                                schedule.DestinationId,
+                                schedule.Destination.id,
                                 schedule.date,
                                 schedule.seat_price,
                                 schedule.BusId
@@ -567,6 +569,9 @@ export default function AdminDashboard() {
                       ))}
                     </tbody>
                   </table>
+                </div>
+                <div id="view/archived" className="adminDashboard-routes">
+                  <ViewArchived />
                 </div>
               </div>
             ) : (
