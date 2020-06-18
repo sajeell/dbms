@@ -15,6 +15,7 @@ const adminCredential = require('./routes/adminCredential');
 const routes = require('./routes/routes');
 const station = require('./routes/stations');
 const bus = require('./routes/bus');
+const ticket = require('./routes/tickets');
 
 // Routes
 app.use('/customer/authentication', require('./routes/userjwtAuth'));
@@ -24,6 +25,7 @@ app.use('/admin/credential', adminCredential);
 app.use('/routes', routes);
 app.use('/station', station);
 app.use('/bus', bus);
+app.use('/ticket', ticket);
 
 const PORT = 5000 || process.env.PORT;
 

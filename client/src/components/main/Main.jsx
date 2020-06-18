@@ -4,7 +4,7 @@ import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
-
+import { Link } from "react-router-dom";
 // CSS File
 import "./Main.css";
 
@@ -63,8 +63,6 @@ export default function Main() {
     window.localStorage.setItem("source_id", source);
     window.localStorage.setItem("destination_id", destination);
     window.localStorage.setItem("date", date);
-
-    window.location.replace("/schedule");
   }
 
   return (
@@ -115,12 +113,14 @@ export default function Main() {
           <input type='date' id='date' value={date} onChange={handleDate} />
         </div>
         <div className='input-4'>
-          <input
-            type='button'
-            value='Check Schedule'
-            id='schedule-button'
-            onClick={submitForm}
-          />
+          <Link to='/schedule'>
+            <input
+              type='button'
+              value='Check Schedule'
+              id='schedule-button'
+              onClick={submitForm}
+            />
+          </Link>
         </div>
       </div>
     </div>

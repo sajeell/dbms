@@ -1,0 +1,40 @@
+.Orders-wrapper {
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 65px;
+  padding: 50px;
+  background-color: rgba(250, 235, 215, 0.849);
+}
+
+.heading {
+  margin-top: 5%;
+  font-size: 2rem;
+  user-select: none;
+  text-transform: uppercase;
+}
+.Orders-wrapper table {
+  border: 2px solid black;
+}
+
+.Orders-wrapper table th {
+  user-select: none;
+  text-transform: uppercase;
+  padding: 10px;
+  border: 1px solid black;
+}
+
+.Orders-wrapper table td {
+  text-align: center;
+  padding: 10px;
+  border: 1px solid black;
+}
+
+#ticket-cancel:hover {
+  background-color: plum;
+  cursor: pointer;
+  color: white;
+  font-weight: bold;
+  padding: 12px;
+}

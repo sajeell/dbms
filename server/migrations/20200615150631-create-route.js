@@ -8,20 +8,20 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      busid: {
+      BusId: {
         type: Sequelize.INTEGER,
         references: {model: 'Buses', key: 'id'},
       },
-      source_id: {
+      SourceId: {
         type: Sequelize.INTEGER,
         references: {model: 'Stations', key: 'id'},
       },
-      destination_id: {
+      DestinationId: {
         type: Sequelize.INTEGER,
         references: {model: 'Stations', key: 'id'},
       },
       seat_price: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.NUMERIC,
       },
       time: {
         type: Sequelize.STRING,

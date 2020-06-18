@@ -280,16 +280,15 @@ export default function AdminDashboard() {
                     <a href='#view/route'>
                       <p id='admin-header-6'>View Schedules</p>
                     </a>
-                    <a href=''>
-                      <p
-                        id='admin-header-7'
-                        onClick={(e) => {
-                          logout(e);
-                        }}
-                      >
-                        Log Out
-                      </p>
-                    </a>
+
+                    <p
+                      id='admin-header-7'
+                      onClick={(e) => {
+                        logout(e);
+                      }}
+                    >
+                      Log Out
+                    </p>
                   </div>
                 </header>
                 <div id='add/station'>
@@ -426,6 +425,7 @@ export default function AdminDashboard() {
                                         <img
                                           src={bus.picture_link}
                                           id='bus-image'
+                                          alt=''
                                           style={{
                                             height: "50px",
                                             marginLeft: "50px",

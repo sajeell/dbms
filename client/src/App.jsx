@@ -10,6 +10,7 @@ import Register from "./components/register/Register";
 import Main from "./components/main/Main";
 import Header from "./components/header/Header";
 import Schedule from "./components/schedule/Schedule";
+import Orders from "./components/orders/Orders";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -44,6 +45,17 @@ function App() {
     <div className='App'>
       <header className='App-header'>
         <Switch>
+          <Route exact path='/'>
+            <Header setAuth={setAuth} />
+            <Main />
+          </Route>
+          <Route
+            exact
+            path='/orders'
+            render={(props) =>
+              isAuthenticated ? <Orders /> : <Redirect to='/login' />
+            }
+          />
           <Route
             exact
             path='/login'
@@ -56,14 +68,14 @@ function App() {
             }
           />
 
-          <Route exact path='/'>
-            <Header setAuth={setAuth} />
-            <Main />
-          </Route>
+          <Route
+            exact
+            path='/schedule'
+            render={(props) =>
+              isAuthenticated ? <Schedule /> : <Redirect to='/login' />
+            }
+          />
 
-          <Route exact path='/schedule'>
-            <Schedule />
-          </Route>
           <Route
             exact
             path='/register'

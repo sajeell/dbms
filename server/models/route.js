@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
       BusId: DataTypes.INTEGER,
       SourceId: DataTypes.INTEGER,
       DestinationId: DataTypes.INTEGER,
-      seat_price: DataTypes.INTEGER,
+      seat_price: DataTypes.FLOAT,
       date: DataTypes.DATE,
       time: DataTypes.STRING,
     },
@@ -30,6 +30,9 @@ module.exports = (sequelize, DataTypes) => {
     Routes.belongsTo(models.Stations, {
       as: 'Destination',
       foreignKey: 'DestinationId',
+    });
+    Routes.hasMany(models.Tickets, {
+      foreignKey: 'RouteId',
     });
   };
   return Routes;

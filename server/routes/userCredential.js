@@ -4,7 +4,7 @@ const models = require('../models');
 
 router.post('/', authorize, async (req, res) => {
   try {
-    const customer = await models.User.findAll({
+    const customer = await models.Users.findAll({
       where: {
         id: req.customer.id,
       },

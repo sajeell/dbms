@@ -37,3 +37,8 @@ table {
   color: white;
   font-weight: bold;
 }
+
+#ticket-quantity {
+  padding: 5px;
+  width: 300px;
+}

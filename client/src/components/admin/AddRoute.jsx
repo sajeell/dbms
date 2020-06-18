@@ -65,6 +65,8 @@ export default function AddRoute() {
         },
         body: JSON.stringify(body),
       });
+      const parseData = response.json();
+      console.log(parseData);
       alert("Route Added");
     } catch (error) {
       console.error(error);
@@ -163,6 +165,7 @@ export default function AddRoute() {
                   <img
                     src={bus.picture_link}
                     id='bus-image'
+                    alt=""
                     style={{ height: "50px", marginLeft: "50px" }}
                   ></img>
                 </MenuItem>

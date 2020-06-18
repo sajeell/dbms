@@ -196,11 +196,11 @@
 
 .adminDashboard-header {
   display: flex;
-  padding: 10px;
   top: 0;
   left: 0;
   position: fixed;
   text-transform: uppercase;
+  padding: 10px;
   background-color: rgb(197, 139, 139);
 }
 

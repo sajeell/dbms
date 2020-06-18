@@ -8,11 +8,11 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      customer_id: {
+      CustomerId: {
         type: Sequelize.INTEGER,
         references: {model: 'Users', key: 'id'},
       },
-      route_id: {
+      RouteId: {
         type: Sequelize.INTEGER,
         references: {model: 'Routes', key: 'id'},
       },
@@ -21,6 +21,7 @@ module.exports = {
       },
       seatnum: {
         type: Sequelize.INTEGER,
+        unique: true,
       },
       createdAt: {
         allowNull: false,

@@ -1,6 +1,7 @@
 .Login-wrapper {
   display: flex;
 }
+
 #login-image {
   height: 100vh;
   width: 100%;

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App.jsx";
@@ -20,7 +20,7 @@ ReactDOM.render(
       <Route exact path='/admin/dashboard'>
         <AdminDashboard />
       </Route>
-      <Route>
+      <Route >
         <App />
       </Route>
     </BrowserRouter>

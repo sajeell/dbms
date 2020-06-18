@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
 
 // CSS File
 import "./Admin.css";
@@ -81,15 +80,9 @@ export default function AdminLogin({ setAuth }) {
               onChange={handlePassword}
             />
           </div>
-          <div className='admin-login-row-3'>
-            <p>
-              Not a registered member? Click{" "}
-              <span id='click'>
-                <Link to='/admin/register'>here</Link>
-              </span>{" "}
-              to register
-            </p>
-          </div>
+          <br />
+          <br />
+          <br />
           <div className='admin-login-row-4'>
             <input
               type='button'

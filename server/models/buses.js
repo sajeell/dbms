@@ -11,8 +11,9 @@ module.exports = (sequelize, DataTypes) => {
     {}
   );
   Buses.associate = function (models) {
-    // Buses.belongsTo(models.Routes);
-    // Buses.hasMany(models.Routes);
+    Buses.hasMany(models.Routes, {
+      foreignKey: 'BusId',
+    });
   };
   return Buses;
 };

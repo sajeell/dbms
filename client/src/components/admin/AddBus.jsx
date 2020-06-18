@@ -29,6 +29,7 @@ export default function AddBus() {
         body: JSON.stringify(body),
       });
       const parseData = await response.json();
+      console.log(parseData);
       alert("Bus has been Posted");
     } catch (error) {
       console.error(error);
