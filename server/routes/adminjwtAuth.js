@@ -16,7 +16,7 @@ router.post('/register', validInfo, async (req, res) => {
       },
     });
     if (user.length > 0) {
-      return res.status(401).json('Admins already exist!');
+      return res.status(401).json('Admin already exist!');
     }
 
     const salt = await bcrypt.genSalt(9);
@@ -33,7 +33,7 @@ router.post('/register', validInfo, async (req, res) => {
     return res.json({adminjwtToken});
   } catch (err) {
     console.error(err);
-    res.status(500).send('Error in registering Admins');
+    res.status(500).send('Error in registering the Admin');
   }
 });
 
@@ -58,7 +58,7 @@ router.post('/login', validInfo, async (req, res) => {
     return res.json({adminjwtToken});
   } catch (err) {
     console.error(err);
-    res.status(500).send('Error in Admins login');
+    res.status(500).send(`Error in Admin's login`);
   }
 });
 
@@ -67,7 +67,7 @@ router.post('/verify', authorize, (req, res) => {
     res.json(true);
   } catch (err) {
     console.error(err.message);
-    res.status(500).send('Error in Admins verification');
+    res.status(500).send(`Error in Admin's verification`);
   }
 });
 
